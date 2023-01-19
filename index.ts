@@ -12,20 +12,23 @@ httpServer.listen(HTTP_PORT);
 const wss = new WebSocketServer({port: WS_PORT});
 
 wss.on("connection", (ws: WebSocket)=>{
+    const stream = createWebSocketStream(ws, { encoding: 'utf8', decodeStrings: false });
+    stream.on('data', async (ch:string)=>{
+        const [event, param, param2] = ch.split(' ');
+        console.log(ch);
+        console.log(event);
+        stream.write(`${event} px`);
+    })
+    stream.write(`ws_start`);
 
-    ws.on('message', (data:RawData)=>{
-        socketHandling(data.toString())
-        ws.send(data.toString())
-    });
-
+    // ws.on('message', (data:RawData)=>{
+    //     socketHandling(data.toString(), ws)
+    //     // ws.send(data.toString()+' px')
+    //     // console.log('data');
+    // });
     ws.on('close', ()=>{
         console.log('ws closing');
     })
-
-    // const duplex = createWebSocketStream(ws, { encoding: 'utf8' });
-    
-    // duplex.pipe(output);
-    // input.pipe(duplex);
 })
 
 
