@@ -2,6 +2,7 @@ import { Duplex } from "stream";
 import { mouse } from "@nut-tree/nut-js";
 import { drawSquare } from "./drawSquare";
 import { drawRectangular } from "./drawRectangular";
+import { drawCircle } from "./drawCircle";
 
 export async function drawFunction(com:string, pos:string, pos2:string, stream:Duplex) {
     const {x, y} = await mouse.getPosition();
@@ -16,7 +17,7 @@ export async function drawFunction(com:string, pos:string, pos2:string, stream:D
             break;
         case 'circle':
             // draw_circle {px}
-
+            await drawCircle(+x, +y, +pos)
             break;
         default:
             break;
