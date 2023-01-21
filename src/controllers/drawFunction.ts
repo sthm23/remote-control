@@ -10,14 +10,20 @@ export async function drawFunction(com:string, pos:string, pos2:string, stream:D
         case 'square':
             // draw_square {px}
             await drawSquare(+x, +y, +pos)
+            stream.write(`${com}_${pos}px`);
+            console.log(`${com} ${pos}px`);
             break;
         case 'rectangle':
             // draw_rectangle {px} {px}
             await drawRectangular(+x, +y, +pos, +pos2)
+            stream.write(`${com}_${pos}px_${pos2}px`);
+            console.log(`${com} ${pos}px ${pos2}px`);            
             break;
         case 'circle':
             // draw_circle {px}
             await drawCircle(+x, +y, +pos)
+            stream.write(`${com}_${pos}px`);
+            console.log(`${com} ${pos}px`);
             break;
         default:
             break;

@@ -11,6 +11,6 @@ export async function socketHandling(ch:string, stream:Duplex) {
     } else if (com.startsWith('draw')) {
         await drawFunction(com, pos, pos2, stream)
     } else {
-        await printScreen(com);
+        await printScreen(com, stream);
     }
 }
