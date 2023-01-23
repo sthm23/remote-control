@@ -1,6 +1,6 @@
-import { httpServer } from "./src/http_server/index";
+import { httpServer } from "./http_server/index";
 import { WebSocketServer, WebSocket, createWebSocketStream } from 'ws';
-import {socketHandling} from './src/controllers/socketHandling';
+import {socketHandling} from './controllers/socketHandling';
 
 const HTTP_PORT = 8181;
 const WS_PORT = 8080;
@@ -32,5 +32,4 @@ process.on('SIGINT', () => {
     wss.close();
     process.exit();
 });
-
 
